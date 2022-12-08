@@ -1,7 +1,7 @@
 function Card({image, title, status, specie}) {
   return (
     <>
-      <div className="card my-2 " style={{minWidth: '350px'}}>
+      <div className="card my-2" style={{minWidth: '350px'}}>
         <div className="card-body">
           <h3 className="text-center">{ title }</h3>
           <hr />
