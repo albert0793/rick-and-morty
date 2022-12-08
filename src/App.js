@@ -7,7 +7,7 @@ function App() {
   const [info, setInfo] = useState({});
   const [cards, setCards] = useState([]);
   const url = `https://rickandmortyapi.com/api/character`;
-  function getCards(apiUrl){
+  async function getCards(apiUrl){
     fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
@@ -25,12 +25,12 @@ function App() {
   }
  useEffect(()=>{
   getCards(url);
- },[])
+ },[]);
   return (
     <div className="container-fluid">
     <h1 className="text-center my-3">Rick And Morthy App</h1>
-    <div className="d-flex flex-row justify-content-center flex-wrap-wrap">
-      <div className="col-sm-3 col-md-5">
+    <div>
+      <div className="d-flex flex-row flex-column justify-content-center flex-wrap-wrap">
         {
           cards.map((el) =>(
             <Card key={el.id} image={el.image} title={el.name} status={el.status} specie={el.species}/>
@@ -38,7 +38,7 @@ function App() {
         }
       </div>
      </div>
-     <Pagination prev={prev} next={next}/>
+     <Pagination prev={info.prev} next={info.next} onPrev={prev} onNext={next} />
     </div>
   );
 }
